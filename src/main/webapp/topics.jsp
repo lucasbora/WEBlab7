@@ -27,7 +27,7 @@
                 <tr>
                     <td><a href="posts?topic_id=${topic.id}">${topic.title}</a></td>
                     <td>${topic.username}</td>
-                    <td>${topic.created_at}</td>
+                    <td>${topic.createdAt}</td>
                 </tr>
             </c:forEach>
         </table>

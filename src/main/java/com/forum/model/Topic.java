@@ -7,6 +7,7 @@ public class Topic {
     private String title;
     private int userId;
     private Timestamp createdAt;
+    private String username;
 
     // Getters and setters
     public int getId() {
@@ -39,5 +40,13 @@ public class Topic {
 
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

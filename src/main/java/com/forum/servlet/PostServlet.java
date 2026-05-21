@@ -1,5 +1,6 @@
 package com.forum.servlet;
 
+import com.forum.model.Post;
 import com.forum.util.DBUtil;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,9 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet("/posts")
 public class PostServlet extends HttpServlet {
@@ -28,17 +27,17 @@ public class PostServlet extends HttpServlet {
             }
             
             // Get posts
-            List<Map<String, Object>> posts = new ArrayList<>();
+            List<Post> posts = new ArrayList<>();
             PreparedStatement psPosts = conn.prepareStatement("SELECT p.id, p.content, u.username, p.user_id, p.created_at FROM posts p JOIN users u ON p.user_id = u.id WHERE p.topic_id = ? ORDER BY p.created_at ASC");
             psPosts.setInt(1, topicId);
             ResultSet rsPosts = psPosts.executeQuery();
             while (rsPosts.next()) {
-                Map<String, Object> post = new HashMap<>();
-                post.put("id", rsPosts.getInt("id"));
-                post.put("content", rsPosts.getString("content"));
-                post.put("username", rsPosts.getString("username"));
-                post.put("user_id", rsPosts.getInt("user_id"));
-                post.put("created_at", rsPosts.getString("created_at"));
+                Post post = new Post();
+                post.setId(rsPosts.getInt("id"));
+                post.setContent(rsPosts.getString("content"));
+                post.setUsername(rsPosts.getString("username"));
+                post.setUserId(rsPosts.getInt("user_id"));
+                post.setCreatedAt(rsPosts.getTimestamp("created_at"));
                 posts.add(post);
             }
             request.setAttribute("posts", posts);

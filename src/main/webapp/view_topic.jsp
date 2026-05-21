@@ -22,12 +22,12 @@
             <c:forEach var="post" items="${posts}">
                 <div class="post-card">
                     <div class="post-header">
-                        <strong>${post.username}</strong> <span class="date">${post.created_at}</span>
+                        <strong>${post.username}</strong> <span class="date">${post.createdAt}</span>
                     </div>
                     <div class="post-content">
                         ${post.content}
                     </div>
-                    <c:if test="${post.user_id == sessionScope.user_id}">
+                    <c:if test="${post.userId == sessionScope.user_id}">
                         <form action="posts" method="post" onsubmit="return confirmDelete();" style="display:inline;">
                             <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="post_id" value="${post.id}">
