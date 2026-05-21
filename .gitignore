@@ -1,0 +1,8 @@
+target/
+*.class
+*.log
+.idea/
+.settings/
+.vscode/
+*.db-shm
+*.db-wal
